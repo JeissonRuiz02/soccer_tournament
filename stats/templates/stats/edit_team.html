@@ -1,0 +1,12 @@
+{% extends 'stats/base.html' %}
+
+{% block title %}Edit Team{% endblock %}
+
+{% block content %}
+<h1>Edit Team</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

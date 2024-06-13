@@ -1,0 +1,17 @@
+{% extends 'stats/base.html' %}
+
+{% block title %}{{ tournament.name }} Details{% endblock %}
+
+{% block content %}
+<h1>{{ tournament.name }} Details</h1>
+<h2>Teams</h2>
+<ul class="list-group">
+    {% for team in teams %}
+    <li class="list-group-item">{{ team.name }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'stats:enter_result' tournament.id %}" class="btn btn-primary">Enter Match Result</a>
+<a href="{% url 'stats:league_table' tournament.id %}" class="btn btn-secondary">View League Table</a>
+<a href="{% url 'stats:tournament_list' %}" class="btn btn-light">Back to Tournament List</a>
+<a href="{% url 'stats:export_json' tournament.id %}" class="btn btn-success">Export Results as JSON</a> <!-- Enlace para exportar JSON -->
+{% endblock %}

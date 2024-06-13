@@ -1,0 +1,13 @@
+{% extends 'stats/base.html' %}
+
+{% block title %}Delete Tournament{% endblock %}
+
+{% block content %}
+<h1>Delete Tournament</h1>
+<p>Are you sure you want to delete the tournament "{{ tournament.name }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="{% url 'stats:tournament_detail' tournament.id %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

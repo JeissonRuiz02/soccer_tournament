@@ -1,0 +1,38 @@
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+# Database #
+db.sqlite3
+*.sqlite3
+
+# Static and media files #
+staticfiles/
+media/
+
+# Virtual environment #
+venv/
+env/
+*.py[cod]
+*.swp
+.Python
+.idea/
+.vscode/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code #
+.vscode/
+
+# PyCharm #
+.idea/
+
+# macOS #
+.DS_Store
+
+# Backup files #
+backups/

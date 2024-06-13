@@ -1,0 +1,19 @@
+{% extends 'stats/base.html' %}
+
+{% block title %}Tournament List{% endblock %}
+
+{% block content %}
+<h1>Tournament List</h1>
+<a href="{% url 'stats:add_tournament' %}" class="btn btn-success mb-3">Add Tournament</a>
+<ul class="list-group">
+    {% for tournament in tournaments %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="{% url 'stats:tournament_detail' tournament.id %}">{{ tournament.name }}</a>
+        <form action="{% url 'stats:delete_tournament' tournament.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

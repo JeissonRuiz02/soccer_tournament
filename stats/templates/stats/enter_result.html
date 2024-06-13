@@ -1,0 +1,95 @@
+{% extends 'stats/base.html' %}
+{% load form_tags %}
+
+{% block title %}Enter Match Result for {{ tournament.name }}{% endblock %}
+
+{% block content %}
+<h1>Enter Match Result for {{ tournament.name }}</h1>
+<form method="post" class="needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_home_team">Home Team</label>
+        {{ form.home_team|add_class:"form-control" }}
+        {% if form.home_team.errors %}
+        <div class="invalid-feedback d-block">
+            {% for error in form.home_team.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="id_away_team">Away Team</label>
+        {{ form.away_team|add_class:"form-control" }}
+        {% if form.away_team.errors %}
+        <div class="invalid-feedback d-block">
+            {% for error in form.away_team.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="id_home_goals">Home Goals</label>
+        {{ form.home_goals|add_class:"form-control" }}
+        {% if form.home_goals.errors %}
+        <div class="invalid-feedback d-block">
+            {% for error in form.home_goals.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="id_away_goals">Away Goals</label>
+        {{ form.away_goals|add_class:"form-control" }}
+        {% if form.away_goals.errors %}
+        <div class="invalid-feedback d-block">
+            {% for error in form.away_goals.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="id_date">Date</label>
+        {{ form.date|add_class:"form-control" }}
+        {% if form.date.errors %}
+        <div class="invalid-feedback d-block">
+            {% for error in form.date.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const homeTeamSelect = document.getElementById('id_home_team');
+        const awayTeamSelect = document.getElementById('id_away_team');
+
+        function updateAwayTeamOptions() {
+            const selectedHomeTeam = homeTeamSelect.value;
+            Array.from(awayTeamSelect.options).forEach(option => {
+                option.hidden = option.value === selectedHomeTeam;
+            });
+        }
+
+        function updateHomeTeamOptions() {
+            const selectedAwayTeam = awayTeamSelect.value;
+            Array.from(homeTeamSelect.options).forEach(option => {
+                option.hidden = option.value === selectedAwayTeam;
+            });
+        }
+
+        homeTeamSelect.addEventListener('change', updateAwayTeamOptions);
+        awayTeamSelect.addEventListener('change', updateHomeTeamOptions);
+
+        // Initial call to set up the options
+        updateAwayTeamOptions();
+        updateHomeTeamOptions();
+    });
+</script>
+{% endblock %}
