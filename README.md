@@ -33,24 +33,28 @@ Follow these steps to set up the project locally:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+```
 
 3. **Create and activate a virtual environment:**
 ```bash
 pip install -r requirements.txt
-
+```
 
 4. **Apply the database migrations:**
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
-
+```
 5. **(Optional) Load backup data from JSON files:**
 ```bash
 python manage.py load_results
-
+```
 6. **Run the development server:**
 ```bash
 python manage.py runserver
+```
+
+
 
 
